@@ -1,0 +1,105 @@
+##########################################################################################
+# Copyright (c) 2022. Viacheslav Kolupaev, https://vkolupaev.com/
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+# file except in compliance with the License. You may obtain a copy of the License at
+#
+#   https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under
+# the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied. See the License for the specific language governing
+# permissions and limitations under the License.
+##########################################################################################
+
+##########################################################################################
+# `pre-commit` configuration file.
+#
+# Documentation: https://pre-commit.com
+#
+# To start it manually, run the following command in the project's venv terminal:
+# `pre-commit run --all-files`.
+##########################################################################################
+
+# Top-level configuration: https://pre-commit.com/#pre-commit-configyaml---top-level
+default_language_version:
+  python: python3.10
+default_stages: [commit, push]
+files: ''
+exclude: '^$'
+fail_fast: false
+
+# Repos configuration: https://pre-commit.com/#pre-commit-configyaml---repos
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    # Supported hooks: https://github.com/pre-commit/pre-commit-hooks
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: check-ast
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+        exclude: ^.*\.(md|rst)$
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-executables-have-shebangs
+      - id: name-tests-test
+        args: [--django]
+      - id: detect-private-key
+
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        entry: isort
+        language: python
+        types: [ python ]
+        files: .py$
+
+  - repo: local
+    hooks:
+      - id: bandit
+        name: bandit
+        verbose: true
+        entry: bandit
+        language: python
+        types: [ python ]
+        args: [
+          -l,  # report only issues of a given severity level or higher (-l for LOW, -ll for MEDIUM, -lll for HIGH)
+          --recursive,  # find and process files in subdirectories
+          --exit-zero,  # force exit with 0, even with results found
+          --exclude docs,requirements  # comma-separated list of paths
+        ]
+        files: .py$
+
+  - repo: local
+    hooks:
+      - id: flake8
+        name: flake8
+        description: wemake-python-styleguide enforcement
+        verbose: true
+        entry: flake8
+        args: [
+            --config=setup.cfg,
+            --exit-zero  # force exit with 0
+        ]
+        language: python
+        types: [python]
+
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        verbose: true
+        entry: bash -c 'mypy "$@" || true' --  # force exit with 0
+        language: python
+        types: [python]
+        args: []
+        require_serial: true
+        additional_dependencies: [
+          pydantic,
+          sqlalchemy.ext,
+          types-sqlalchemy,
+          types-orjson,
+        ]
