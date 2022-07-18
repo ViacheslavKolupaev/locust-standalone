@@ -1,4 +1,12 @@
 [[package]]
+name = "appdirs"
+version = "1.4.4"
+description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "astor"
 version = "0.8.1"
 description = "Read/rewrite/write Python ASTs"
@@ -27,6 +35,14 @@ dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", 
 docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
 tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "cloudpickle"]
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "cloudpickle"]
+
+[[package]]
+name = "autorepr"
+version = "0.3.0"
+description = "Makes civilized __repr__, __str__, and __unicode__ methods"
+category = "dev"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "azure-core"
@@ -113,6 +129,18 @@ optional = false
 python-versions = "~=3.7"
 
 [[package]]
+name = "cattrs"
+version = "22.1.0"
+description = "Composable complex class support for attrs and dataclasses."
+category = "dev"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+attrs = ">=20"
+exceptiongroup = {version = "*", markers = "python_version <= \"3.10\""}
+
+[[package]]
 name = "certifi"
 version = "2022.6.15"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -182,6 +210,17 @@ test = ["mock", "pyyaml", "pytest"]
 yaml = ["pyyaml"]
 
 [[package]]
+name = "configupdater"
+version = "3.1.1"
+description = "Parser like ConfigParser but for updating configuration files"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+testing = ["sphinx", "flake8", "pytest", "pytest-cov", "pytest-virtualenv", "pytest-xdist"]
+
+[[package]]
 name = "confluent-kafka"
 version = "1.9.0"
 description = "Confluent's Python client for Apache Kafka"
@@ -225,6 +264,20 @@ optional = false
 python-versions = ">=3.6,<4.0"
 
 [[package]]
+name = "dictdiffer"
+version = "0.9.0"
+description = "Dictdiffer is a library that helps you to diff and patch dictionaries."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.extras]
+all = ["Sphinx (>=3)", "sphinx-rtd-theme (>=0.2)", "check-manifest (>=0.42)", "mock (>=1.3.0)", "pytest-cov (>=2.10.1)", "pytest-isort (>=1.2.0)", "sphinx (>=3)", "tox (>=3.7.0)", "numpy (>=1.13.0)", "numpy (>=1.15.0)", "numpy (>=1.18.0)", "pytest (==5.4.3)", "pytest-pycodestyle (>=2)", "pytest-pydocstyle (>=2)", "pytest (>=6)", "pytest-pycodestyle (>=2.2.0)", "pytest-pydocstyle (>=2.2.0)", "numpy (>=1.20.0)"]
+docs = ["Sphinx (>=3)", "sphinx-rtd-theme (>=0.2)"]
+numpy = ["numpy (>=1.13.0)", "numpy (>=1.15.0)", "numpy (>=1.18.0)", "numpy (>=1.20.0)"]
+tests = ["check-manifest (>=0.42)", "mock (>=1.3.0)", "pytest-cov (>=2.10.1)", "pytest-isort (>=1.2.0)", "sphinx (>=3)", "tox (>=3.7.0)", "pytest (==5.4.3)", "pytest-pycodestyle (>=2)", "pytest-pydocstyle (>=2)", "pytest (>=6)", "pytest-pycodestyle (>=2.2.0)", "pytest-pydocstyle (>=2.2.0)"]
+
+[[package]]
 name = "distlib"
 version = "0.3.5"
 description = "Distribution utilities"
@@ -241,12 +294,31 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "dpath"
+version = "2.0.6"
+description = "Filesystem-like pathing and searching for dictionaries"
+category = "dev"
+optional = false
+python-versions = ">=3"
+
+[[package]]
 name = "eradicate"
 version = "2.1.0"
 description = "Removes commented-out code."
 category = "dev"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "exceptiongroup"
+version = "1.0.0rc8"
+description = "Backport of PEP 654 (exception groups)"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+test = ["pytest (>=6)"]
 
 [[package]]
 name = "filelock"
@@ -476,6 +548,29 @@ Flask = ">=0.9"
 Six = "*"
 
 [[package]]
+name = "flatten-dict"
+version = "0.4.2"
+description = "A flexible utility for flattening and unflattening dict-like objects in Python."
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[package.dependencies]
+six = ">=1.12,<2.0"
+
+[[package]]
+name = "furl"
+version = "2.1.3"
+description = "URL manipulation made simple."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+orderedmultidict = ">=1.0.1"
+six = ">=1.8.0"
+
+[[package]]
 name = "gevent"
 version = "21.12.0"
 description = "Coroutine-based network library"
@@ -658,6 +753,14 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
+name = "jmespath"
+version = "1.0.1"
+description = "JSON Matching Expressions"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "locust"
 version = "2.10.1"
 description = "Developer friendly load testing framework"
@@ -706,6 +809,21 @@ typing-extensions = "*"
 websocket-client = "*"
 
 [[package]]
+name = "loguru"
+version = "0.6.0"
+description = "Python logging made (stupidly) simple"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+colorama = {version = ">=0.3.4", markers = "sys_platform == \"win32\""}
+win32-setctime = {version = ">=1.0.0", markers = "sys_platform == \"win32\""}
+
+[package.extras]
+dev = ["colorama (>=0.3.4)", "docutils (==0.16)", "flake8 (>=3.7.7)", "tox (>=3.9.0)", "pytest (>=4.6.2)", "pytest-cov (>=2.7.1)", "black (>=19.10b0)", "isort (>=5.1.1)", "Sphinx (>=4.1.1)", "sphinx-autobuild (>=0.7.1)", "sphinx-rtd-theme (>=0.4.3)"]
+
+[[package]]
 name = "lxml"
 version = "4.9.1"
 description = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
@@ -728,12 +846,48 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "marshmallow"
+version = "3.17.0"
+description = "A lightweight library for converting complex datatypes to and from native Python datatypes."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+packaging = ">=17.0"
+
+[package.extras]
+dev = ["pytest", "pytz", "simplejson", "mypy (==0.961)", "flake8 (==4.0.1)", "flake8-bugbear (==22.6.22)", "pre-commit (>=2.4,<3.0)", "tox"]
+docs = ["sphinx (==4.5.0)", "sphinx-issues (==3.0.1)", "alabaster (==0.7.12)", "sphinx-version-warning (==1.1.2)", "autodocsumm (==0.2.8)"]
+lint = ["mypy (==0.961)", "flake8 (==4.0.1)", "flake8-bugbear (==22.6.22)", "pre-commit (>=2.4,<3.0)"]
+tests = ["pytest", "pytz", "simplejson"]
+
+[[package]]
+name = "marshmallow-polyfield"
+version = "5.10"
+description = "An unofficial extension to Marshmallow to allow for polymorphic fields"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+marshmallow = ">=3.0.0b10"
+
+[[package]]
 name = "mccabe"
 version = "0.6.1"
 description = "McCabe checker, plugin for flake8"
 category = "dev"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "more-itertools"
+version = "8.13.0"
+description = "More routines for operating on iterables, beyond itertools"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
 
 [[package]]
 name = "msal"
@@ -797,6 +951,45 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "nitpick"
+version = "0.32.0"
+description = "Enforce the same settings across multiple language-independent projects"
+category = "dev"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+attrs = ">=20.1.0"
+autorepr = "*"
+click = "*"
+ConfigUpdater = "*"
+dictdiffer = "*"
+dpath = "*"
+flake8 = ">=3.0.0"
+flatten-dict = "*"
+furl = "*"
+identify = "*"
+jmespath = "*"
+loguru = "*"
+marshmallow = ">=3.0.0b10"
+marshmallow-polyfield = ">=5.10,<6.0"
+more-itertools = "*"
+pluggy = "*"
+python-slugify = "*"
+requests = "*"
+requests-cache = "*"
+"ruamel.yaml" = "*"
+sortedcontainers = "*"
+StrEnum = "*"
+toml = "*"
+tomlkit = ">=0.8.0"
+
+[package.extras]
+lint = ["pylint"]
+test = ["pytest", "pytest-cov", "testfixtures", "responses", "freezegun", "pytest-testmon", "pytest-watch", "pytest-socket", "pytest-datadir"]
+doc = ["sphinx", "sphinx-rtd-theme", "sphobjinv", "sphinx-gitref"]
+
+[[package]]
 name = "nodeenv"
 version = "1.7.0"
 description = "Node.js virtual environment builder"
@@ -840,6 +1033,25 @@ psutil = ">=5.6.3"
 requests = ">=2.19.0"
 
 [[package]]
+name = "orderedmultidict"
+version = "1.0.1"
+description = "Ordered Multivalue Dictionary"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+six = ">=1.8.0"
+
+[[package]]
+name = "orjson"
+version = "3.7.7"
+description = "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "outcome"
 version = "1.2.0"
 description = "Capture the outcome of Python function calls."
@@ -849,6 +1061,17 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 attrs = ">=19.2.0"
+
+[[package]]
+name = "packaging"
+version = "21.3"
+description = "Core utilities for Python packages"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
 
 [[package]]
 name = "paho-mqtt"
@@ -913,6 +1136,18 @@ python-versions = ">=3.7"
 greenlet = "1.1.2"
 pyee = "8.1.0"
 websockets = "10.1"
+
+[[package]]
+name = "pluggy"
+version = "1.0.0"
+description = "plugin and hook calling mechanisms for python"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+dev = ["pre-commit", "tox"]
+testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "portalocker"
@@ -1025,6 +1260,22 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
+name = "pydantic"
+version = "1.9.1"
+description = "Data validation and settings management using python type hints"
+category = "main"
+optional = false
+python-versions = ">=3.6.1"
+
+[package.dependencies]
+python-dotenv = {version = ">=0.10.4", optional = true, markers = "extra == \"dotenv\""}
+typing-extensions = ">=3.7.4.3"
+
+[package.extras]
+dotenv = ["python-dotenv (>=0.10.4)"]
+email = ["email-validator (>=1.0.3)"]
+
+[[package]]
 name = "pydocstyle"
 version = "6.1.1"
 description = "Python docstring style checker"
@@ -1112,6 +1363,17 @@ docs = ["sphinx", "sphinx-rtd-theme"]
 test = ["flaky", "pretend", "pytest (>=3.0.1)"]
 
 [[package]]
+name = "pyparsing"
+version = "3.0.9"
+description = "pyparsing module - Classes and methods to define and execute parsing grammars"
+category = "dev"
+optional = false
+python-versions = ">=3.6.8"
+
+[package.extras]
+diagrams = ["railroad-diagrams", "jinja2"]
+
+[[package]]
 name = "pysocks"
 version = "1.7.1"
 description = "A Python SOCKS client module. See https://github.com/Anorov/PySocks for more information."
@@ -1137,6 +1399,31 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 
 [package.dependencies]
 six = ">=1.5"
+
+[[package]]
+name = "python-dotenv"
+version = "0.20.0"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
+name = "python-slugify"
+version = "6.1.2"
+description = "A Python slugify application that also handles Unicode"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+
+[package.dependencies]
+text-unidecode = ">=1.3"
+
+[package.extras]
+unidecode = ["Unidecode (>=1.1.1)"]
 
 [[package]]
 name = "pywin32"
@@ -1185,6 +1472,34 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "requests-cache"
+version = "0.9.5"
+description = "A transparent persistent cache for the requests library"
+category = "dev"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+appdirs = ">=1.4.4,<2.0.0"
+attrs = ">=21.2,<22.0"
+cattrs = ">=1.8,<=22.2"
+exceptiongroup = {version = ">=1.0.0-rc.3", markers = "python_full_version >= \"3.10.0\" and python_full_version < \"4.0.0\""}
+requests = ">=2.22,<3.0"
+url-normalize = ">=1.4,<2.0"
+urllib3 = ">=1.25.5,<2.0.0"
+
+[package.extras]
+dynamodb = ["boto3 (>=1.15,<2.0)", "botocore (>=1.18,<2.0)"]
+all = ["boto3 (>=1.15,<2.0)", "botocore (>=1.18,<2.0)", "pymongo (>=3)", "redis (>=3)", "itsdangerous (>=2.0,<3.0)", "pyyaml (>=5.4)", "ujson (>=4.0)"]
+mongodb = ["pymongo (>=3)"]
+redis = ["redis (>=3)"]
+bson = ["bson (>=0.5)"]
+security = ["itsdangerous (>=2.0,<3.0)"]
+yaml = ["pyyaml (>=5.4)"]
+json = ["ujson (>=4.0)"]
+docs = ["furo (>=2021.9.8)", "linkify-it-py (>=1.0.1,<2.0.0)", "myst-parser (>=0.15.1,<0.16.0)", "sphinx (==4.3.0)", "sphinx-autodoc-typehints (>=1.11,<2.0)", "sphinx-automodapi (>=0.13,<0.15)", "sphinx-copybutton (>=0.3,<0.5)", "sphinx-inline-tabs (>=2022.1.2b11)", "sphinx-notfound-page", "sphinx-panels (>=0.6,<0.7)", "sphinxcontrib-apidoc (>=0.3,<0.4)"]
+
+[[package]]
 name = "restructuredtext-lint"
 version = "1.4.0"
 description = "reStructuredText linter"
@@ -1213,6 +1528,29 @@ python-versions = ">=3.6,<4"
 
 [package.dependencies]
 pyasn1 = ">=0.1.3"
+
+[[package]]
+name = "ruamel.yaml"
+version = "0.17.21"
+description = "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order"
+category = "dev"
+optional = false
+python-versions = ">=3"
+
+[package.dependencies]
+"ruamel.yaml.clib" = {version = ">=0.2.6", markers = "platform_python_implementation == \"CPython\" and python_version < \"3.11\""}
+
+[package.extras]
+docs = ["ryd"]
+jinja2 = ["ruamel.yaml.jinja2 (>=0.2)"]
+
+[[package]]
+name = "ruamel.yaml.clib"
+version = "0.2.6"
+description = "C version of reader, parser and emitter for ruamel.yaml derived from libyaml"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
 
 [[package]]
 name = "selenium"
@@ -1279,6 +1617,19 @@ python-versions = ">=3.8"
 pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
+name = "strenum"
+version = "0.4.8"
+description = "An Enum that inherits from str."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.extras]
+docs = ["sphinx", "sphinx-rtd-theme", "myst-parser"]
+release = ["twine"]
+test = ["pytest", "pytest-black", "pytest-cov", "pytest-pylint", "pylint"]
+
+[[package]]
 name = "testfixtures"
 version = "6.18.5"
 description = "A collection of helpers and mock objects for unit tests and doc tests."
@@ -1290,6 +1641,14 @@ python-versions = "*"
 build = ["setuptools-git", "wheel", "twine"]
 docs = ["sphinx", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
 test = ["pytest (>=3.6)", "pytest-cov", "pytest-django", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
+
+[[package]]
+name = "text-unidecode"
+version = "1.3"
+description = "The most basic Text::Unidecode port"
+category = "dev"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "toml"
@@ -1306,6 +1665,14 @@ description = "A lil' TOML parser"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "tomlkit"
+version = "0.11.1"
+description = "Style preserving TOML library"
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4.0"
 
 [[package]]
 name = "trio"
@@ -1338,12 +1705,35 @@ trio = ">=0.11"
 wsproto = ">=0.14"
 
 [[package]]
+name = "typeguard"
+version = "2.13.3"
+description = "Run-time type checker for Python"
+category = "main"
+optional = false
+python-versions = ">=3.5.3"
+
+[package.extras]
+doc = ["sphinx-rtd-theme", "sphinx-autodoc-typehints (>=1.2.0)"]
+test = ["pytest", "typing-extensions", "mypy"]
+
+[[package]]
 name = "typing-extensions"
 version = "4.3.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "url-normalize"
+version = "1.4.3"
+description = "URL normalization for Python"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+
+[package.dependencies]
+six = "*"
 
 [[package]]
 name = "urllib3"
@@ -1445,6 +1835,17 @@ python-versions = ">=3.7"
 watchdog = ["watchdog"]
 
 [[package]]
+name = "win32-setctime"
+version = "1.1.0"
+description = "A small Python utility to set file creation time on Windows"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
+
+[[package]]
 name = "wsproto"
 version = "1.1.0"
 description = "WebSockets state-machine based protocol implementation"
@@ -1483,18 +1884,21 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "7e9ca5923366a809dcca403fba9127d500a0f44ea93241d715b2b28882af8802"
+content-hash = "71b1223df2800683150f216abc1e0d2997f9b2a3d78c0d3b016aa9cf152412d0"
 
 [metadata.files]
+appdirs = []
 astor = []
 async-generator = []
 attrs = []
+autorepr = []
 azure-core = []
 azure-identity = []
 bandit = []
 black = []
 brotli = []
 cachetools = []
+cattrs = []
 certifi = []
 cffi = []
 cfgv = []
@@ -1502,12 +1906,16 @@ charset-normalizer = []
 click = []
 colorama = []
 configargparse = []
+configupdater = []
 confluent-kafka = []
 cryptography = []
 darglint = []
+dictdiffer = []
 distlib = []
 docutils = []
+dpath = []
 eradicate = []
+exceptiongroup = []
 filelock = []
 flake8 = []
 flake8-bandit = []
@@ -1526,6 +1934,8 @@ flake8-string-format = []
 flask = []
 flask-basicauth = []
 flask-cors = []
+flatten-dict = []
+furl = []
 gevent = []
 geventhttpclient = []
 gitdb = []
@@ -1540,27 +1950,37 @@ idna = []
 isort = []
 itsdangerous = []
 jinja2 = []
+jmespath = []
 locust = []
 locust-plugins = []
+loguru = []
 lxml = []
 markupsafe = []
+marshmallow = []
+marshmallow-polyfield = []
 mccabe = []
+more-itertools = []
 msal = []
 msal-extensions = []
 msgpack = []
 mypy = []
 mypy-extensions = []
+nitpick = []
 nodeenv = []
 opencensus = []
 opencensus-context = []
 opencensus-ext-azure = []
+orderedmultidict = []
+orjson = []
 outcome = []
+packaging = []
 paho-mqtt = []
 pathspec = []
 pbr = []
 pep8-naming = []
 platformdirs = []
 playwright = []
+pluggy = []
 portalocker = []
 pre-commit = []
 protobuf = []
@@ -1572,6 +1992,7 @@ pyasn1 = []
 pyasn1-modules = []
 pycodestyle = []
 pycparser = []
+pydantic = []
 pydocstyle = []
 pyee = []
 pyflakes = []
@@ -1579,16 +2000,22 @@ pygments = []
 pyjwt = []
 pymongo = []
 pyopenssl = []
+pyparsing = []
 pysocks = []
 python-autoviv = []
 python-dateutil = []
+python-dotenv = []
+python-slugify = []
 pywin32 = []
 pyyaml = []
 pyzmq = []
 requests = []
+requests-cache = []
 restructuredtext-lint = []
 roundrobin = []
 rsa = []
+"ruamel.yaml" = []
+"ruamel.yaml.clib" = []
 selenium = []
 six = []
 smmap = []
@@ -1596,18 +2023,24 @@ sniffio = []
 snowballstemmer = []
 sortedcontainers = []
 stevedore = []
+strenum = []
 testfixtures = []
+text-unidecode = []
 toml = []
 tomli = []
+tomlkit = []
 trio = []
 trio-websocket = []
+typeguard = []
 typing-extensions = []
+url-normalize = []
 urllib3 = []
 virtualenv = []
 websocket-client = []
 websockets = []
 wemake-python-styleguide = []
 werkzeug = []
+win32-setctime = []
 wsproto = []
 "zope.event" = []
 "zope.interface" = []
