@@ -48,5 +48,50 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.nitpick]
 style = [
-    "https://gitlab.com/vkolupaev/styleguide-config/-/raw/main/styles/nitpick_style.toml",
+    "https://gitlab.com/vkolupaev/styleguide-config/-/raw/main/styles/nitpick-style.toml",
 ]
+
+[tool.mypy]
+warn_unused_ignores = true
+plugins = ["pydantic.mypy"]
+files = ["src/**/*.py", "tests/**/*.py"]
+exclude = ["^src\\/**\\/__init__\\.py$", "^alembic\\/env\\.py$"]
+python_version = "3.10"
+follow_imports = "silent"
+disable_error_code = "attr-defined"
+verbosity = 0
+show_error_codes = true
+pretty = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+disallow_untyped_defs = true
+warn_unused_configs = true
+warn_return_any = true
+warn_redundant_casts = true
+
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+[[tool.mypy.overrides]]
+module = ["uvicorn", "fastapi", "typeguard", "src.*.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+norecursedirs = [".*", "_darcs", "build", "CVS", "dist", "node_modules", "venv", "{arch}", "venv_py??", "venv_py???", "src", "app", "docs", "package_scripts", "pdoc", "requirements", "settings", "site", "_build", "__pycache__", "tmp*", "${env.WORKSPACE}"]
+filterwarnings = ["ignore::DeprecationWarning"]
+addopts = ["-ra", "-l", "-vv", "--tb=short", "--strict", "--durations=3", "--cov=src/*", "--cov-report=term-missing", "--cov-report=xml:coverage.xml", "--junit-xml=report.xml", "--hypothesis-show-statistics"]
+timeout = 300
+testpaths = ["tests"]
+python_files = ["tests/**/test_*.py"]
+required_plugins = ["pytest-cov", "pytest-timeout"]
+markers = ["smoke: marks a test as a smoke-test.", "fast: marks a test as a fast execution test.", "slow: marks a test as a slow execution test.", "db_dependent: marks a test as database dependent.", "network_dependent: marks a test as network dependent.", "requires_gpu: mark a test that requires a GPU to run.", "integration: marks a test that is meant to be used as integration testing.", "internal_data_sources: marks a test as a test of internal data sources.", "external_data_sources: marks a test as a test of external data sources.", "incremental: mark for abort incremental-marked tests in a class."]
+log_cli = true
+log_cli_level = "DEBUG"
+log_cli_format = "%(asctime)s | %(levelname)s | %(name)s | %(funcName)s:%(lineno)d | %(message)s"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
