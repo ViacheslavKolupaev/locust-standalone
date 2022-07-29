@@ -18,7 +18,17 @@
 Placing models in this separate module avoids circular import errors.
 """
 
+from enum import Enum
+
 import pydantic
+
+
+class EnvState(str, Enum):
+    """Application environment state."""
+
+    development = 'development'
+    staging = 'staging'
+    production = 'production'
 
 
 class AppVcsRefSchema(pydantic.BaseModel):
