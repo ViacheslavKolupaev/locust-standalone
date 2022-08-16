@@ -28,7 +28,6 @@ from uuid import uuid4
 
 import autoviv  # type: ignore[import]
 from locust import constant_throughput, env, events, tag, task
-#from locust.contrib.fasthttp import ResponseContextManager
 from locust_plugins.users import RestResponseContextManager, RestUser
 from pydantic import ValidationError
 from typeguard import typechecked
@@ -38,7 +37,7 @@ from src.locust_standalone.config import config
 
 
 @events.quitting.add_listener
-def _(environment: env.Environment, **kw: Any) -> None:
+def _(environment: env.Environment) -> None:
     """Set the exit-code to non-zero.
 
     Set the exit-code to non-zero if any of the following conditions are met:
@@ -50,10 +49,6 @@ def _(environment: env.Environment, **kw: Any) -> None:
 
     Args:
         environment: `locust` Environment instance.
-        **kw: Keyword arguments passed in to a function call.
-
-    Returns:
-        None.
 
     """
     max_failure_ratio: Final[int] = 1  # valid values: from 1 to 100.
@@ -67,12 +62,11 @@ def _(environment: env.Environment, **kw: Any) -> None:
     elif environment.stats.total.avg_response_time > max_avg_response_time:
         logging.error('Test failed due to average response time > {0} ms'.format(max_avg_response_time))
         environment.process_exit_code = 1
-    elif environment.stats.total.get_response_time_percentile(
-        percent=response_time_precent,
-    ) > response_time_precentile_cutoff:
+    elif environment.stats.total.get_response_time_percentile(response_time_precent) > response_time_precentile_cutoff:
         logging.error('Test failed due to {0}th percentile response time > {1} ms'.format(
             int(response_time_precent * 100),
-            response_time_precentile_cutoff),
+            response_time_precentile_cutoff,
+        ),
         )
         environment.process_exit_code = 1
     else:
@@ -84,6 +78,14 @@ def get_request_payload() -> dict[str, Any]:
 
     The raw data is checked against the Pydantic request schema.
     In case of a validation error, further work of the application is interrupted.
+
+    Returns:
+        Dictionary with payload data for the request, validated via Pydantic schema
+
+    Raises:
+        ValidationError: if the data has not been validated against the Pydantic schema
+        TypeError: if the data type is incompatible with the Pydantic schema
+
     """
     request_payload_raw = {
         'requesting_service_name': 'locust_standalone',
@@ -146,7 +148,7 @@ class FastApiRestUser(RestUser):
             resp.failure(
                 "Invalid 'resp.js' object type. Should be: 'autoviv.Dict'. Received: '{type_of_resp_js}'.".format(
                     type_of_resp_js=type(resp.js),
-                )
+                ),
             )
 
         if resp.js and 'error' in resp.js and resp.js['error'] is not None:
@@ -158,6 +160,10 @@ class FastApiRestUser(RestUser):
 
         In case of a validation error, the application will not be interrupted.
         `locust` will log the error and reflect in final test statistics.
+
+        Args:
+            resp: response received from REST API endpoint
+
         """
         response_data_raw = resp.js
 
@@ -166,18 +172,18 @@ class FastApiRestUser(RestUser):
         except ValidationError as exc:
             resp.failure(
                 (
-                    '{exc_name} occurred while trying to initialize {schema_name}. ' +
+                    '{exc_name} occurred while trying to initialize {schema_name}. ' +  # noqa: WPS226
                     'Found the following errors: {errors}.'
                 ).format(
-                        exc_name=exc.__class__.__name__,
-                        schema_name=ControllerEndpointRequestSchema.__name__,
-                        errors=exc.json(),
+                    exc_name=exc.__class__.__name__,
+                    schema_name=ControllerEndpointRequestSchema.__name__,
+                    errors=exc.json(),
                 ),
             )
         except TypeError as exc:
             resp.failure(
                 (
-                    '{exc_name} occurred while trying to initialize {schema_name}. ' +
+                    '{exc_name} occurred while trying to initialize {schema_name}. ' +  # noqa: WPS226
                     'Received the following record argument: {type_of_validated_data}; {validated_data}.'
                 ).format(
                     exc_name=exc.__class__.__name__,
