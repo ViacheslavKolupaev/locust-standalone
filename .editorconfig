@@ -16,27 +16,28 @@
 #  limitations under the License.
 # ########################################################################################
 
-root = true
+root = True
 
 [*]
 charset = utf-8
 max_line_length = 120
 ij_visual_guides = 90,120
-ij_wrap_on_typing = true
-
-[*.{py,md,yml,yaml,json}]
-trim_trailing_whitespace = true
-insert_final_newline = true
+ij_wrap_on_typing = True
+end_of_line = lf
+insert_final_newline = True
 indent_style = space
-
-[*.{py,json,md}]
 indent_size = 4
 tab_width = 4
+trim_trailing_whitespace = True
 
-[{*.yaml,*.yml}]
+[*.{bash,sh}]
 indent_size = 2
 tab_width = 2
 
-[{*.bash,*.sh}]
+[*.{js,json,groovy}]
+indent_size = 2
+tab_width = 2
+
+[*.{yaml,yml}]
 indent_size = 2
 tab_width = 2
