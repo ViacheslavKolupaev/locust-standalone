@@ -45,7 +45,7 @@ from typing import Literal, Optional, Union
 
 import pydantic
 
-from src.locust_standalone import config_schemas
+from locust_standalone.schemas import config_schemas
 
 
 def _get_path_to_dotenv_file(dotenv_filename: str, num_of_parent_dirs_up: int) -> Optional[Path]:
