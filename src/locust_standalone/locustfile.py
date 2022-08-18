@@ -32,7 +32,7 @@ from locust_plugins.users import RestResponseContextManager, RestUser
 from pydantic import ValidationError
 from typeguard import typechecked
 
-from src.locust_standalone.common_schemas import ControllerEndpointRequestSchema
+from locust_standalone.schemas.common_schemas import ControllerEndpointRequestSchema
 from src.locust_standalone.config import config
 
 
