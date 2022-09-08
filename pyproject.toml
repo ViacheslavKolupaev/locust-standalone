@@ -32,16 +32,16 @@ authors = ["Viacheslav Kolupaev <v.s.kolupaev@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-locust = "^2.10.1"
-locust-plugins = "^2.6.8"
-pydantic = { extras = ["dotenv"], version = "^1.9.1"}
+locust = "^2.12"
+locust-plugins = "^2.6.10"
+pydantic = { extras = ["dotenv"], version = "^1.10.2"}
 typeguard = "^2.13.3"
-orjson = "^3.7.7"
+orjson = "^3.8.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.20.0"
 isort = "^5.10.1"
-black = "^22.6.0"
+black = "^22.8.0"
 mypy = "0.931"
 wemake-python-styleguide = "^0.16.1"
 nitpick = "^0.32.0"
